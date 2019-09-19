@@ -1,0 +1,36 @@
+{
+  "name": "mahdiidea/sms-ir-laravel6",
+  "homepage": "https://github.com/mahdiidea/SmsIrLaravel6",
+  "description": "Send sms message with laravel 6",
+  "keywords": [
+    "laravel",
+    "iran",
+    "laravel",
+    "laravel6",
+    "sms",
+    "sms.ir"
+  ],
+  "authors": [
+    {
+      "name": "Mahdi IDea",
+      "email": "96rajabi@gmail.com"
+    }
+  ],
+  "require": {
+    "nesbot/carbon": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "MahdiIDea\\SmsIrLaravel6\\": "src/",
+      "MahdiIDea\\SmsIrLaravel6\\Tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "dev",
+  "extra": {
+    "laravel": {
+      "providers": [
+        "MahdiIDea\\SmsIrLaravel\\SmsIrServiceProvider"
+      ]
+    }
+  }
+}
