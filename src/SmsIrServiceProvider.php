@@ -1,6 +1,6 @@
 <?php
 
-namespace MahdiIDea\SmsIrLaravel;
+namespace MahdiIDea\SmsIrLaravel6;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
