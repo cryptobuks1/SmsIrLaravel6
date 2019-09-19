@@ -2,9 +2,7 @@
 
 namespace MahdiIDea\SmsIrLaravel;
 
-use Carbon\Carbon;
-use MahdiIDea\SmsIrLaravel\Classes\SmsIR_SendMessage;
-use phpDocumentor\Reflection\Types\This;
+use MahdiIDea\SmsIrLaravel6\Classes\SmsIR_SendMessage;
 
 class SmsResolver
 {
@@ -27,8 +25,6 @@ class SmsResolver
         try {
 
             $LineNumber = "1";
-            $send_at = date("Y-m-d\TH:i:s");
-
             $SmsIR_SendMessage = new SmsIR_SendMessage($this->apiKey, $this->secretKey, $LineNumber);
             $SendMessage = $SmsIR_SendMessage->SendMessage($phone, $message, $send_at);
             var_dump($SendMessage);

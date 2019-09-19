@@ -1,6 +1,6 @@
 <?php
 
-namespace MahdiIDea\SmsIrLaravel\Classes;
+namespace MahdiIDea\SmsIrLaravel6\Classes;
 
 class SmsIR_SendMessage
 {
