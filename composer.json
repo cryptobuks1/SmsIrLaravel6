@@ -16,16 +16,13 @@
       "email": "96rajabi@gmail.com"
     }
   ],
-  "require": {
-    "nesbot/carbon": "*"
-  },
+  "require": {},
   "autoload": {
     "psr-4": {
       "MahdiIDea\\SmsIrLaravel6\\": "src/",
       "MahdiIDea\\SmsIrLaravel6\\Tests\\": "tests/"
     }
   },
-  "minimum-stability": "dev",
   "extra": {
     "laravel": {
       "providers": [
