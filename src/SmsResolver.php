@@ -2,35 +2,86 @@
 
 namespace MahdiIDea\SmsIrLaravel6;
 
-use MahdiIDea\SmsIrLaravel6\Classes\SmsIR_SendMessage;
+use MahdiIDea\SmsIrLaravel6\Classes\GetToken;
+use MahdiIDea\SmsIrLaravel6\Classes\GetCredit;
+use MahdiIDea\SmsIrLaravel6\Classes\GetSmsLines;
+use MahdiIDea\SmsIrLaravel6\Classes\SendMessage;
+use MahdiIDea\SmsIrLaravel6\Classes\SentMessageResponseByDate;
+use MahdiIDea\SmsIrLaravel6\Classes\SentMessageResponseById;
+use MahdiIDea\SmsIrLaravel6\Classes\UltraFastSend;
+use MahdiIDea\SmsIrLaravel6\Classes\VerificationCode;
 
+/**
+ * Class SmsResolver
+ * @package MahdiIDea\SmsIrLaravel6
+ *
+ * @property string line
+ * @property string apiKey
+ * @property string secretKey
+ */
 class SmsResolver
 {
-    private $apiKey, $secretKey;
-
+    /**
+     * SmsResolver constructor.
+     */
     public function __construct()
     {
+        $this->line = env("SMS_IR_LINE");
         $this->apiKey = env("SMS_IR_API_KEY");
         $this->secretKey = env("SMS_IR_SECRET_KEY");
     }
 
+    /** @return SmsResolver */
     public static function instance(): SmsResolver
     {
         return (new SmsResolver);
     }
 
-    public function send($phone, $message, $send_at = null)
+    /** @return float */
+    public function cridit()
     {
-        if ($send_at == null) $send_at = date("Y-m-d\TH:i:s");
-        try {
+        return (new GetCredit($this->apiKey, $this->secretKey))->GetCredit();
+    }
 
-            $LineNumber = "1";
-            $SmsIR_SendMessage = new SmsIR_SendMessage($this->apiKey, $this->secretKey, $LineNumber);
-            $SendMessage = $SmsIR_SendMessage->SendMessage($phone, $message, $send_at);
-            var_dump($SendMessage);
+    /** @return array */
+    public function lines()
+    {
+        return (new GetSmsLines($this->apiKey, $this->secretKey))->GetSmsLines();
+    }
 
-        } catch (\Exception $e) {
-            echo 'Error SendMessage : ' . $e->getMessage();
-        }
+    /** @return string */
+    public function token()
+    {
+        return (new GetToken($this->apiKey, $this->secretKey))->GetToken();
+    }
+
+    /**
+     * @param string $phone
+     * @param string|int $code
+     * @return string
+     */
+    public function verification($phone, $code)
+    {
+        return (new VerificationCode($this->apiKey, $this->secretKey))->VerificationCode($code, $phone);
+    }
+
+    /**
+     * @param array $data
+     * @return string
+     */
+    public function ultraFastSend(array $data)
+    {
+        return (new UltraFastSend($this->apiKey, $this->secretKey))->UltraFastSend($data);
+    }
+
+    /**
+     * @param string $line
+     * @param array|string $phone
+     * @param array|string $text
+     * @return string
+     */
+    public function send($phone, $text, $line = null)
+    {
+        return (new SendMessage($this->apiKey, $this->secretKey, $line ?? $this->line))->SendMessage(is_array($phone) ? $phone : array($phone), is_array($text) ? $text : array($text), date("Y-m-d\TH:i:s"));
     }
 }

@@ -4,16 +4,16 @@
 namespace MahdiIDea\SmsIrLaravel6\Classes;
 
 
-class SentMessageResponseByDate
+class ReceiveMessageResponseByDate
 {
     /**
-     * gets API Message Send Url.
+     * gets API Message Receive Url.
      *
      * @return string Indicates the Url
      */
-    protected function getAPIMessageSendUrl()
+    protected function getAPIMessageReceiveUrl()
     {
-        return "http://RestfulSms.com/api/MessageSend";
+        return "http://RestfulSms.com/api/ReceiveMessage";
     }
 
     /**
@@ -48,17 +48,16 @@ class SentMessageResponseByDate
      * @param string $RequestedPageNumber Requested Page Number
      * @return string Indicates the sent sms result
      */
-    public function SentMessageResponseByDate($Shamsi_FromDate, $Shamsi_ToDate, $RowsPerPage, $RequestedPageNumber)
+    public function ReceiveMessageResponseByDate($Shamsi_FromDate, $Shamsi_ToDate, $RowsPerPage, $RequestedPageNumber)
     {
 
         $token = (new GetToken($this->APIKey, $this->SecretKey))->GetToken();
         if ($token != false) {
 
-            $url = $this->getAPIMessageSendUrl() . "?Shamsi_FromDate=" . $Shamsi_FromDate . "&Shamsi_ToDate=" . $Shamsi_ToDate . "&RowsPerPage=" . $RowsPerPage . "&RequestedPageNumber=" . $RequestedPageNumber;
-            $SentMessageResponseByDate = $this->execute($url, $token);
+            $url = $this->getAPIMessageReceiveUrl() . "?Shamsi_FromDate=" . $Shamsi_FromDate . "&Shamsi_ToDate=" . $Shamsi_ToDate . "&RowsPerPage=" . $RowsPerPage . "&RequestedPageNumber=" . $RequestedPageNumber;
+            $ReceiveMessageResponseByDate = $this->execute($url, $token);
 
-
-            $object = json_decode($SentMessageResponseByDate);
+            $object = json_decode($ReceiveMessageResponseByDate);
 
             if (is_object($object)) {
                 $array = get_object_vars($object);
@@ -107,3 +106,24 @@ class SentMessageResponseByDate
         return $result;
     }
 }
+
+//try {
+//
+//    date_default_timezone_set("Asia/Tehran");
+//
+//    // your sms.ir panel configuration
+//    $APIKey = "enter your api key ...";
+//    $SecretKey = "enter your secret key ...";
+//
+//    $Shamsi_FromDate = '1397/02/1';
+//    $Shamsi_ToDate = '1397/02/31';
+//    $RowsPerPage = 10;
+//    $RequestedPageNumber = 1;
+//
+//    $SmsIR_ReceiveMessageResponseByDate = new SmsIR_ReceiveMessageResponseByDate($APIKey, $SecretKey);
+//    $ReceiveMessageResponseByDate = $SmsIR_ReceiveMessageResponseByDate->ReceiveMessageResponseByDate($Shamsi_FromDate, $Shamsi_ToDate, $RowsPerPage, $RequestedPageNumber);
+//    var_dump($ReceiveMessageResponseByDate);
+//
+//} catch (Exeption $e) {
+//    echo 'Error ReceiveMessageResponseByDate : ' . $e->getMessage();
+//}
