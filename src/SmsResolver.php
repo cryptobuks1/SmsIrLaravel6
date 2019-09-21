@@ -38,7 +38,7 @@ class SmsResolver
     }
 
     /** @return float */
-    public function cridit()
+    public function credit()
     {
         return (new GetCredit($this->apiKey, $this->secretKey))->GetCredit();
     }
