@@ -31,7 +31,7 @@ class SmsIrServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('gateway', function () {
+        $this->app->singleton('smsIr', function () {
             return new SmsResolver();
         });
     }
