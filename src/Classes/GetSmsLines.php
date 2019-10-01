@@ -47,7 +47,6 @@ class GetSmsLines
      */
     public function GetSmsLines()
     {
-
         $token = (new GetToken($this->APIKey, $this->SecretKey))->GetToken();
         if ($token != false) {
 

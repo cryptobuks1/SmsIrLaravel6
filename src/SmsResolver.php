@@ -26,9 +26,9 @@ class SmsResolver
      */
     public function __construct()
     {
-        $this->line = env("SMS_IR_LINE");
-        $this->apiKey = env("SMS_IR_API_KEY");
-        $this->secretKey = env("SMS_IR_SECRET_KEY");
+        $this->line = config("app.SMS_IR_LINE");
+        $this->apiKey = config("app.SMS_IR_API_KEY");
+        $this->secretKey = config("app.SMS_IR_SECRET_KEY");
     }
 
     /** @return SmsResolver */
