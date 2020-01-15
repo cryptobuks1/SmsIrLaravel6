@@ -25,4 +25,6 @@ get sms lines
 send verification code
 <pre>$lines = SmsResolver::instance()->verification($phone, $code);</pre>
 ultra Fast Send 
-<pre>SmsResolver::instance()->ultraFastSend($data);</pre>
+<pre>
+SmsResolver::instance()->ultraFastSend([‘user’=>’username’,’verificationCode’=>’12345′],350,’09123456789′);
+</pre>
